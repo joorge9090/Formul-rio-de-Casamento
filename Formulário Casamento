@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulário de Casamento</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #ff0b48;
+    color: #000; /* Letras pretas */
+    text-align: center;
+  }
+  form {
+    margin: 0 auto;
+    max-width: 600px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  }
+  h1 {
+    color: #ff0b48;
+  }
+  input[type="text"], select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  input[type="date"] {
+    width: 32%;
+  }
+  input[type="submit"] {
+    background-color: #ff0b48;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  input[type="submit"]:hover {
+    background-color: #d0093b;
+  }
+  .center-text {
+    text-align: center;
+  }
+  .output-box {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    text-align: left;
+    white-space: pre-wrap;
+  }
+</style>
+</head>
+<body>
+<form id="casamentoForm">
+  <h1>💒 Formulário de Casamento 💒</h1>
+  <label for="nomeAdvogado">Nome do advogado(a) responsável:</label>
+  <input type="text" id="nomeAdvogado" name="nomeAdvogado" required>
+  <label for="rgAdvogado">RG do Advogado(a) responsável:</label>
+  <input type="text" id="rgAdvogado" name="rgAdvogado" required>
+  <label for="nomeNoivo">Nome do Noivo:</label>
+  <input type="text" id="nomeNoivo" name="nomeNoivo" required>
+  <label for="cpfNoivo">CPF do Noivo:</label>
+  <input type="text" id="cpfNoivo" name="cpfNoivo" required>
+  <label for="nomeNoiva">Nome da Noiva:</label>
+  <input type="text" id="nomeNoiva" name="nomeNoiva" required>
+  <label for="cpfNoiva">CPF da Noiva:</label>
+  <input type="text" id="cpfNoiva" name="cpfNoiva" required>
+  <label for="regimeBens">Regime de Bens do Casamento:</label><br>
+  <input type="radio" id="comunhaoTotal" name="regimeBens" value="Comunhão Total de Bens">
+  <label for="comunhaoTotal">Comunhão Total de Bens</label><br>
+  <input type="radio" id="comunhaoParcial" name="regimeBens" value="Comunhão Parcial de Bens">
+  <label for="comunhaoParcial">Comunhão Parcial de Bens</label><br>
+  <input type="radio" id="separacaoTotal" name="regimeBens" value="Separação Total de Bens">
+  <label for="separacaoTotal">Separação Total de Bens</label><br><br>
+  <label for="dataCasamento">Data do Casamento:</label>
+  <input type="date" id="dataCasamento" name="dataCasamento" required><br><br>
+  <label for="novoNomeNoivo">Novo nome do Noivo:</label>
+  <input type="text" id="novoNomeNoivo" name="novoNomeNoivo" required>
+  <label for="novoNomeNoiva">Novo nome da Noiva:</label>
+  <input type="text" id="novoNomeNoiva" name="novoNomeNoiva" required>
+  <label for="observacoes">Observações/Averbações:</label>
+  <textarea id="observacoes" name="observacoes" rows="4"></textarea>
+  <input type="submit" value="Confirmar">
+</form>
+<div class="output-box" id="outputBox"></div>
+<script>
+  document.getElementById("casamentoForm").addEventListener
+  ("submit", function(event) {
+    event.preventDefault();
+    var form = event.target;
+    var formData = new FormData(form);
+    var data = new Date();
+    var formattedDate = data.toLocaleDateString("pt-BR", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' });
+    var casamentoInfo = "💒 FORMULÁRIO DE CASAMENTO 💒\n\n" +
+                        "🔹 Nome do advogado(a) responsável: " + formData.get("nomeAdvogado") + "\n" +
+                        "🔹 RG do Advogado(a) responsável: " + formData.get("rgAdvogado") + "\n" +
+                        "🔹 Nome do Noivo: " + formData.get("nomeNoivo") + "\n" +
+                        "🔹 CPF do Noivo: " + formData.get("cpfNoivo") + "\n" +
+                        "🔹 Nome da Noiva: " + formData.get("nomeNoiva") + "\n" +
+                        "🔹 CPF da Noiva: " + formData.get("cpfNoiva") + "\n" +
+                        "🔹 Regime de Bens do Casamento: " + formData.get("regimeBens") + "\n" +
+                        "🔹 Data do Casamento: " + formData.get("dataCasamento") + "\n" +
+                        "🔹 Novo nome do Noivo: " + formData.get("novoNomeNoivo") + "\n" +
+                        "🔹 Novo nome da Noiva: " + formData.get("novoNomeNoiva") + "\n" +
+                        "🔹 Observações/Averbações: " + formData.get("observacoes") + "\n\n" +
+                        "━━━━━━━━━━━━━━━━━━✧ • ✧━━━━━━━━━━━━━━━\n" +
+                        "⚖️ SEM MAIS PARA O MOMENTO, A PARTIR DESTA DATA DECLARO ASSIM CASADOS\n" +
+                        "EM MATRIMÔNIO OS CIDADÃOS SUPRAMENCIONADOS.⚖️\n" +
+                        "━━━━━━━━━━━━━━━━━━━━━✧ • ✧━━━━━━━━━━━━\n\n" +
+                        "Data e hora do preenchimento: " + formattedDate;
+    document.getElementById("outputBox").textContent = "```" + casamentoInfo + "```";
+  });
+</script>
+</body>
+</html>
